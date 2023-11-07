@@ -1,28 +1,3 @@
-#include <TM1637Display.h>
-
-//Digital 7 System clock top pins
-int systemClockPinA = 22; 
-int systemClockPinB = 23; 
-int systemClockPinC = 24; 
-int systemClockPinD = 25; 
-int systemClockPinE = 26; 
-int systemClockPinF = 27;
-
-//Digital 7 System clock bottom pins
-int systemClockPinG = 30; 
-int systemClockPinH = 31; 
-int systemClockPinI = 32; 
-int systemClockPinJ = 33; 
-int systemClockPinK = 34; 
-int systemClockPinL = 35; 
-
-// Module connection pins (Digital Pins)
-#define CLK systemClockPinA 
-#define DIO systemClockPinB
-
-// Create display object of type TM1637Display
-TM1637Display display(CLK, DIO);
-
 // Sensor pins
 #define sensorPower 7
 #define sensorPin A5
@@ -45,24 +20,6 @@ void setup() {
   pinMode(yellowLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
 
-  // Initialize the display
-  display.setBrightness(0x0f); // Set the brightness level (0x00 to 0x0f)
-  display.clear(); // Clear the display
-
-  // Set the 7 System Clock pins as an OUTPUT
-  pinMode(systemClockPinA, OUTPUT);     
-  pinMode(systemClockPinB, OUTPUT);     
-  pinMode(systemClockPinC, OUTPUT);     
-  pinMode(systemClockPinD, OUTPUT);     
-  pinMode(systemClockPinE, OUTPUT);     
-  pinMode(systemClockPinF, OUTPUT);     
-  pinMode(systemClockPinG, OUTPUT);   
-  pinMode(systemClockPinH, OUTPUT);  
-  pinMode(systemClockPinI, OUTPUT);  
-  pinMode(systemClockPinJ, OUTPUT);  
-  pinMode(systemClockPinK, OUTPUT); 
-  pinMode(systemClockPinL, OUTPUT); 
-
   // Initially turn off all LEDs
   digitalWrite(redLED, LOW);
   digitalWrite(yellowLED, LOW);
@@ -74,28 +31,24 @@ void loop() {
 
   if (level == 0) {
     Serial.println("Water Level: Empty");
-    display.clear();
     digitalWrite(redLED, LOW);
     digitalWrite(yellowLED, LOW);
     digitalWrite(greenLED, LOW);
   }
   else if (level > 0 && level <= 99) {
     Serial.println("Water Level: Low");
-    display.showNumberDec(1); // Display 1 for low level
     digitalWrite(redLED, LOW);
     digitalWrite(yellowLED, LOW);
     digitalWrite(greenLED, HIGH);
   }
   else if (level >= 100 && level <= 150) { // Corrected the condition here
     Serial.println("Water Level: Medium");
-    display.showNumberDec(2); // Display 2 for medium level
     digitalWrite(redLED, LOW);
     digitalWrite(yellowLED, HIGH);
     digitalWrite(greenLED, LOW);
   }
   else if (level > 155) {
     Serial.println("Water Level: High");
-    display.showNumberDec(3); // Display 3 for high level
     digitalWrite(redLED, HIGH);
     digitalWrite(yellowLED, LOW);
     digitalWrite(greenLED, LOW);
