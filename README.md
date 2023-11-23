@@ -1,5 +1,3 @@
-# WaterLevelSensorENGG525
-ENGG 525 - Engineering Entrepreneurship - Fall 2023 Assignment #3 
 # Water Level Sensor 
 ![Arduino](https://img.shields.io/badge/Arduino_IDE-00979D?style=for-the-badge&logo=arduino&logoColor=white) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
